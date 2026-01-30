@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j_kg
+    ports:
+      - "7474:7474"   # HTTP 端口
+      - "7687:7687"   # Bolt 端口
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/logs:/logs
+      - ./neo4j/import:/import
+      - ./neo4j/plugins:/plugins
+    environment:
+      # 这里设置你的密码，建议和 config.py 保持一致
+      - NEO4J_AUTH=neo4j/sysu_wang_wu
+    restart: always
